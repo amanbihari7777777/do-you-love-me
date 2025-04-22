@@ -20,7 +20,7 @@ noBtn.addEventListener('mouseenter', () => {
 });
 
 yesBtn.addEventListener('click', () => {
-  response.textContent = 'Yay! I knew it!';
+  response.textContent = 'Yay! I know it!';
   createHearts();
 });
 
