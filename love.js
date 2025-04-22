@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     noBtn.addEventListener('mouseover', moveNoButton);
     noBtn.addEventListener('click', () => {
         moveNoButton();
-        const funnyTexts = ["Not quite!", "Try again!", "Nope!", "Maybe later?"];
+        const funnyTexts = ["Please🥺!", "Please🥺!", "No!", "Please🥺?"];
         noBtn.textContent = funnyTexts[Math.floor(Math.random() * funnyTexts.length)];
     });
 
