@@ -87,8 +87,7 @@ button {
 #noBtn {
     background: linear-gradient(45deg, #FF5252, #FF4081);
     color: white;
-    position: absolute;
-    transition: all 0.2s ease;
+    z-index: 0;  /* Ensure the "No" button stays behind the "Yes" button */
 }
 
 #response {
