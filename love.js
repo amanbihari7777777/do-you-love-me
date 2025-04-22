@@ -4,27 +4,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const response = document.getElementById('response');
     const floatingHearts = document.getElementById('floatingHearts');
 
-    // Initialize No button position
-    moveNoButton();
+    // Get initial position of No button
+    let isFirstInteraction = true;
+    let initialPosition = null;
 
     function moveNoButton() {
+        if(isFirstInteraction) {
+            // Switch to fixed positioning after first interaction
+            const rect = noBtn.getBoundingClientRect();
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = rect.left + 'px';
+            noBtn.style.top = rect.top + 'px';
+            isFirstInteraction = false;
+        }
+
         const buttonWidth = noBtn.offsetWidth;
         const buttonHeight = noBtn.offsetHeight;
         const maxX = window.innerWidth - buttonWidth;
         const maxY = window.innerHeight - buttonHeight;
         
-        const newX = Math.random() * (maxX * 0.8) + (maxX * 0.1);
-        const newY = Math.random() * (maxY * 0.8) + (maxY * 0.1);
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
         
-        noBtn.style.left = `${newX}px`;
-        noBtn.style.top = `${newY}px`;
+        noBtn.style.left = newX + 'px';
+        noBtn.style.top = newY + 'px';
     }
 
     noBtn.addEventListener('mouseover', moveNoButton);
     noBtn.addEventListener('click', () => {
         moveNoButton();
-        const funnyTexts = ["Try again!", "Nope!", "Not today!", "Maybe later?"];
-        noBtn.textContent = funnyTexts[Math.random() * funnyTexts.length | 0];
+        const funnyTexts = ["Not quite!", "Try again!", "Nope!", "Maybe later?"];
+        noBtn.textContent = funnyTexts[Math.floor(Math.random() * funnyTexts.length)];
     });
 
     yesBtn.addEventListener('click', () => {
@@ -32,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         response.classList.add('show-response');
         noBtn.style.display = 'none';
         
-        // Create hearts
+        // Create floating hearts
         for(let i = 0; i < 20; i++) {
             const heart = document.createElement('div');
             heart.classList.add('heart');
