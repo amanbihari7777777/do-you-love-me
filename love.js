@@ -2,7 +2,7 @@ const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const response = document.getElementById('response');
 const hearts = document.getElementById('hearts');
-const container = document.querySelector('.buttons');
+const container = document.getElementById('button-container');
 
 noBtn.addEventListener('mouseenter', () => {
   const containerRect = container.getBoundingClientRect();
@@ -20,18 +20,17 @@ noBtn.addEventListener('mouseenter', () => {
 });
 
 yesBtn.addEventListener('click', () => {
-  response.textContent = 'I love you too💖';
-  generateHearts();
+  response.textContent = 'Yay! I knew it!';
+  createHearts();
 });
 
-function generateHearts() {
+function createHearts() {
   for (let i = 0; i < 30; i++) {
     const heart = document.createElement('div');
     heart.classList.add('heart');
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animation = `float ${3 + Math.random() * 2}s linear infinite`;
+    heart.style.left = `${Math.random() * 100}%`;
+    heart.style.animationDuration = `${3 + Math.random() * 2}s`;
     hearts.appendChild(heart);
-
     setTimeout(() => heart.remove(), 5000);
   }
 }
